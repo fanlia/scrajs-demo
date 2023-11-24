@@ -6,6 +6,7 @@ import { getEditor } from './editor.js'
 import demo from '../spiders/demo.js?raw'
 import macaudaily from '../spiders/macaudaily.js?raw'
 
+const $api = document.querySelector("#api")
 const $run = document.querySelector("#run")
 const $doc = document.querySelector("#doc")
 const $result = document.querySelector("#result tbody")
@@ -55,11 +56,19 @@ const worker = ({event, data}) => {
   }
 }
 
-const url = 'http://localhost:4000'
+const default_url = 'http://localhost:4000'
+
+$api.value = localStorage.getItem('api') || default_url
+
+$api.onchange = (e) => {
+  const api = e.target.value
+  localStorage.setItem('api', api)
+}
 
 $run.onclick = async () => {
   const doc = editor.getDoc()
   const options = await getModule(doc)
+  const url = $api.value || default_url
   await run(url, {
     ...options,
     workers: [worker],
