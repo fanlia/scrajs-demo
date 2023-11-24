@@ -7,6 +7,7 @@ const gbuild = (url) => async (data) => {
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
+      'User-Agent': '',
     },
   }).then(res => res.json())
 
