@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "build": "vite build"
+    "build": "vite build --outDir docs"
   },
   "keywords": [],
   "author": "",
