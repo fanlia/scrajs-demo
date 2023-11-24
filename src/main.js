@@ -9,6 +9,7 @@ import macaudaily from '../spiders/macaudaily.js?raw'
 const $api = document.querySelector("#api")
 const $run = document.querySelector("#run")
 const $doc = document.querySelector("#doc")
+const $loading = document.querySelector(".loader")
 const $result = document.querySelector("#result tbody")
 
 const docs = {
@@ -45,12 +46,14 @@ const worker = ({event, data}) => {
     $result.appendChild($tr)
     $tr.innerHTML = Object.values(data.data).map(d => `<td>${d}</td>`).join('')
   } else if (event === 'end') {
+    $loading.style.display = 'none'
     $run.textContent = 'run'
     $run.disabled = false
     $doc.disabled = false
 
   } else if (event === 'start') {
     $result.innerHTML = ''
+    $loading.style.display = 'block'
     $run.textContent = 'loading'
     $run.disabled = true
     $doc.disabled = true
