@@ -50,6 +50,7 @@ const worker = ({event, data}) => {
     $doc.disabled = false
 
   } else if (event === 'start') {
+    $result.innerHTML = ''
     $run.textContent = 'loading'
     $run.disabled = true
     $doc.disabled = true
