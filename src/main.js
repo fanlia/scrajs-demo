@@ -46,10 +46,12 @@ const worker = ({event, data}) => {
   } else if (event === 'end') {
     $run.textContent = 'run'
     $run.disabled = false
+    $doc.disabled = false
 
   } else if (event === 'start') {
     $run.textContent = 'loading'
     $run.disabled = true
+    $doc.disabled = true
   }
 }
 
