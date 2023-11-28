@@ -1,28 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SCRAJS</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>small cup demo</title>
   </head>
   <body>
-    <input id="api" type="url" />
-    <select id="doc">
-      <option>demo</option>
-      <option>demo2</option>
-    </select>
-    <button id="run">run</button>
-    <div style="display:flex;">
-      <div id="editor"></div>
-      <div>
-        <div class="loader" style="display:none;"></div>
-        <table id="result">
-          <tbody></tbody>
-        </table>
+    <div app class="container">
+      <div class="vh-100 d-flex justify-content-center align-items-center">
+        <div class="spinner-border" role="status"></div>
       </div>
     </div>
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>
-
