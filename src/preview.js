@@ -98,5 +98,9 @@ export const onload = (el) => {
       workers: [worker],
     })
   }
+
+  el.onunload = () => {
+    editor.view.destroy()
+  }
 }
 

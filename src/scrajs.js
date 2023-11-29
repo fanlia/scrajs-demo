@@ -31,6 +31,13 @@ export const onload = async (el) => {
     $preview,
   ])
 
+  let popovers = []
+
+  const onunload = () => {
+    popovers.forEach(d => d.dispose())
+    popovers = []
+  }
+
   const onupdate = async () => {
     const query = `
     query show  {
@@ -50,6 +57,8 @@ export const onload = async (el) => {
       }),
     }).then(res => res.json())
 
+    onunload()
+
     h($preview, {}, res.data.page.show.map(d => {
       if (!isVisible(d)) {
         return
@@ -57,13 +66,14 @@ export const onload = async (el) => {
       const span = h('span', {
         className: 'text-success mx-1',
       }, d.selector)
-      new bootstrap.Popover(span, {
+      const p = new bootstrap.Popover(span, {
         html: true,
         sanitize: false,
         title: d.selector,
         content: `<div class="table-responsive"><table class='table'><tbody>${d.attributes.map(dd => `<tr><th>${dd.name}</th><td>${dd.value}</td></tr>`).join('')}</tbody></table></div>`,
         trigger: 'hover',
       })
+      popovers.push(p)
 
       return h('div', {
         attributes: {
@@ -81,5 +91,8 @@ export const onload = async (el) => {
       ])
 
     }))
+  }
+  el.onunload = () => {
+    onunload()
   }
 }
